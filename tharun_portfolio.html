@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tharun P B | CS Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f5f0;
+  --surface:#ffffff;
+  --card:#fdfcfa;
+  --ink:#1a1814;
+  --muted:#6b6760;
+  --faint:#e8e4dc;
+  --accent:#c0392b;
+  --accent2:#2c3e6b;
+  --accent3:#d4750a;
+  --border:#ddd9d0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--faint)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 56px;
+  background:rgba(247,245,240,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;letter-spacing:-0.02em}
+.nav-logo em{color:var(--accent);font-style:normal}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--accent);color:var(--accent);padding:7px 16px;border-radius:4px;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--accent);color:#fff}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 56px 80px;max-width:1100px;margin:0 auto;
+}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;width:100%}
+.hero-tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.hero-tag::before{content:'';width:32px;height:1px;background:var(--accent)}
+h1.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,7vw,84px);
+  font-weight:900;line-height:0.95;
+  letter-spacing:-0.03em;
+  margin-bottom:20px;
+}
+h1.hero-name .last{color:var(--accent)}
+.hero-role{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;color:var(--muted);
+  margin-bottom:24px;letter-spacing:0.06em;
+}
+.hero-bio{
+  font-size:14px;color:var(--muted);
+  line-height:1.85;max-width:440px;
+  margin-bottom:36px;
+  padding-left:16px;
+  border-left:2px solid var(--faint);
+}
+.hero-bio strong{color:var(--accent2);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-fill{background:var(--ink);color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;padding:12px 24px;border-radius:4px;letter-spacing:0.06em;transition:background .2s,transform .2s}
+.btn-fill:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;padding:12px 24px;border-radius:4px;letter-spacing:0.06em;transition:border-color .2s,color .2s,transform .2s}
+.btn-ghost:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-2px)}
+
+/* HERO RIGHT - INFO CARD */
+.info-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:2px;
+  overflow:hidden;
+}
+.info-card-top{
+  background:var(--ink);
+  color:#fff;
+  padding:24px 24px 20px;
+}
+.info-card-top .avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:900;
+  color:#fff;margin-bottom:14px;
+}
+.info-card-top h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:2px}
+.info-card-top p{font-size:12px;color:rgba(255,255,255,0.55);font-family:'JetBrains Mono',monospace}
+.info-rows{padding:0}
+.info-row{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 22px;
+  border-bottom:1px solid var(--faint);
+  transition:background .2s;
+}
+.info-row:last-child{border-bottom:none}
+.info-row:hover{background:var(--bg)}
+.info-icon{
+  width:32px;height:32px;
+  background:var(--faint);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.info-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:1px;letter-spacing:0.06em}
+.info-val{font-size:13px;font-weight:500}
+.info-stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--faint)}
+.stat{padding:16px 14px;text-align:center;border-right:1px solid var(--faint)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--accent);line-height:1}
+.stat-l{font-size:11px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION */
+section{padding:80px 56px;max-width:1100px;margin:0 auto}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px}
+.sec-head{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-0.02em;margin-bottom:40px;line-height:1.05}
+.sec-head em{color:var(--accent);font-style:normal}
+
+/* FULL WIDTH DIVIDER */
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);max-width:1100px;margin:0 auto}
+
+/* EXPERIENCE */
+.exp-wrap{display:grid;grid-template-columns:200px 1fr;gap:40px}
+.exp-timeline{padding-top:6px}
+.exp-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent);margin:0 auto 8px;
+}
+.exp-yr{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-align:center;line-height:1.5}
+.exp-line{width:1px;height:100%;background:var(--faint);margin:8px auto 0}
+.exp-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;padding:28px 30px;
+  transition:border-color .2s,transform .2s;
+}
+.exp-card:hover{border-color:var(--accent);transform:translateX(4px)}
+.exp-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px}
+.exp-co{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2);margin-bottom:16px;letter-spacing:0.05em}
+.exp-list{list-style:none}
+.exp-list li{font-size:13px;color:var(--muted);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.exp-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:5px}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.proj-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;padding:30px;
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;
+  transition:border-color .2s,transform .2s;position:relative;overflow:hidden;
+}
+.proj-card::after{
+  content:'';position:absolute;top:0;right:0;
+  width:3px;height:0;background:var(--accent);
+  transition:height .3s ease;
+}
+.proj-card:hover{border-color:var(--border);transform:translateY(-3px)}
+.proj-card:hover::after{height:100%}
+.proj-num{
+  font-family:'Playfair Display',serif;font-size:48px;font-weight:900;
+  color:var(--faint);line-height:1;
+}
+.proj-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:10px}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px}
+.proj-chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  background:var(--faint);border:1px solid var(--border);
+  color:var(--muted);padding:3px 10px;border-radius:2px;
+  letter-spacing:0.04em;
+}
+
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.skill-block{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;padding:20px 22px;
+  transition:border-color .2s;
+}
+.skill-block:hover{border-color:var(--accent2)}
+.skill-cat{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid var(--faint);
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.stag{
+  font-size:12px;font-weight:500;color:var(--ink);
+  background:var(--faint);padding:4px 10px;border-radius:2px;
+  transition:background .2s,color .2s;
+}
+.stag:hover{background:var(--ink);color:#fff}
+.stag.hi{background:var(--ink);color:#fff}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.edu-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;padding:26px 26px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s;
+}
+.edu-card:hover{border-color:var(--accent)}
+.edu-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:var(--accent);transform:scaleX(0);
+  transition:transform .3s;transform-origin:left;
+}
+.edu-card:hover::before{transform:scaleX(1)}
+.edu-yr{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--muted);margin-bottom:12px;letter-spacing:0.06em;
+}
+.edu-deg{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+.edu-inst{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2);margin-bottom:12px}
+.edu-score{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  color:var(--accent);font-weight:500;
+}
+
+/* CERTIFICATIONS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.cert-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;padding:18px 20px;
+  display:flex;align-items:flex-start;gap:14px;
+  transition:border-color .2s,transform .2s;
+}
+.cert-card:hover{border-color:var(--accent3);transform:translateY(-2px)}
+.cert-icon{
+  width:36px;height:36px;background:var(--faint);
+  border-radius:4px;display:flex;align-items:center;
+  justify-content:center;font-size:16px;flex-shrink:0;
+}
+.cert-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.cert-org{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-blurb{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:28px}
+.contact-items{display:flex;flex-direction:column;gap:10px}
+.c-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;transition:border-color .2s;
+}
+.c-item:hover{border-color:var(--accent)}
+.c-ico{font-size:16px;width:30px;text-align:center;flex-shrink:0}
+.c-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:1px}
+.c-val{font-size:13px;font-weight:500}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.soc-btn{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--muted);transition:all .2s;cursor:pointer;
+}
+.soc-btn:hover{border-color:var(--ink);color:var(--ink);background:var(--faint)}
+.soc-ico{font-size:16px}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;padding:28px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em;
+}
+footer em{color:var(--accent);font-style:normal}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .6s ease both}
+.hero-inner>*:nth-child(1){animation-delay:.1s}
+.hero-inner>*:nth-child(2){animation-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  .hero,.hero-inner,section,.exp-wrap,.skills-layout,.edu-grid,.contact-layout{
+    grid-template-columns:1fr;padding-left:20px;padding-right:20px
+  }
+  .hero{padding-top:100px}
+  .proj-card{grid-template-columns:1fr}
+  .proj-num{font-size:28px}
+  .cert-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">T<em>.</em>PB</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:pbtharun2403@gmail.com" class="nav-cta">Get In Touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Computer Science Engineer</div>
+      <h1 class="hero-name">Tharun<br><span class="last">P B</span></h1>
+      <p class="hero-role">// python · cybersecurity · web · databases</p>
+      <p class="hero-bio">
+        Motivated CS student with a strong foundation in <strong>Python, C, and Java</strong> and hands-on experience in <strong>cybersecurity and networking</strong>. Passionate about building scalable, efficient software and staying ahead of emerging technologies.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-fill">View Projects</a>
+        <a href="#contact" class="btn-ghost">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-top">
+        <div class="avatar">T</div>
+        <h3>Tharun P B</h3>
+        <p>B.E. CSE · Sri Sairam Engineering College</p>
+      </div>
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Location</div>
+            <div class="info-val">Chennai, Tamil Nadu</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✉️</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-val">pbtharun2403@gmail.com</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-val">+91 96000 48829</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🎓</div>
+          <div>
+            <div class="info-label">Batch</div>
+            <div class="info-val">2023 – 2027</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-stats">
+        <div class="stat">
+          <div class="stat-n">8.32</div>
+          <div class="stat-l">CGPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">4</div>
+          <div class="stat-l">Certs</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">1</div>
+          <div class="stat-l">Internship</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-tag">02 / Experience</div>
+  <h2 class="sec-head">Work <em>Experience</em></h2>
+  <div class="exp-wrap">
+    <div class="exp-timeline">
+      <div class="exp-dot"></div>
+      <div class="exp-yr">Jun 2025<br>—<br>Jul 2025</div>
+      <div class="exp-line"></div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-title">Cybersecurity Intern</div>
+      <div class="exp-co">C2E Software Solutions Private Limited</div>
+      <ul class="exp-list">
+        <li>Gained hands-on experience in computer networking and system security in a professional environment.</li>
+        <li>Worked on virtual machines, OS installation, and learned phishing techniques, data encryption, and cryptography.</li>
+        <li>Developed a project — CamPhisher — and used system monitoring tools to understand real-world cyber threats.</li>
+        <li>Gained practical exposure to identifying security vulnerabilities and understanding how attackers exploit user behavior.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-tag">03 / Projects</div>
+  <h2 class="sec-head">Featured <em>Projects</em></h2>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-num">01</div>
+      <div>
+        <div class="proj-name">Traffic Management System</div>
+        <p class="proj-desc">
+          Developed a Traffic Management System to efficiently monitor and control vehicle flow at intersections using programming logic and automation. The system simulates traffic signal operations by dynamically managing signal timings based on traffic density — reducing congestion and improving flow efficiency. Built with a modular approach, making it scalable and extensible with AI-based traffic prediction or sensor integration.
+        </p>
+        <div class="proj-chips">
+          <span class="chip">Python</span>
+          <span class="chip">Automation</span>
+          <span class="chip">Data Structures</span>
+          <span class="chip">Modular Design</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">02</div>
+      <div>
+        <div class="proj-name">CamPhisher</div>
+        <p class="proj-desc">
+          Built during the internship at C2E Software Solutions — a cybersecurity project focused on understanding phishing attack vectors. Used system monitoring tools to simulate and analyze real-world cyber threats, improving practical awareness of network-level vulnerabilities and attacker behavior.
+        </p>
+        <div class="proj-chips">
+          <span class="chip">Cybersecurity</span>
+          <span class="chip">Networking</span>
+          <span class="chip">Python</span>
+          <span class="chip">System Monitoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-tag">04 / Skills</div>
+  <h2 class="sec-head">Technical <em>Skills</em></h2>
+  <div class="skills-layout">
+    <div class="skill-block">
+      <div class="skill-cat">Programming</div>
+      <div class="skill-tags">
+        <span class="stag hi">Python</span>
+        <span class="stag">C</span>
+        <span class="stag">Java</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Web & Database</div>
+      <div class="skill-tags">
+        <span class="stag">HTML</span>
+        <span class="stag">CSS</span>
+        <span class="stag hi">SQL</span>
+        <span class="stag">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">DevOps & Cloud</div>
+      <div class="skill-tags">
+        <span class="stag">Docker</span>
+        <span class="stag">Docker Compose</span>
+        <span class="stag">GitHub Actions</span>
+        <span class="stag">AWS Basics</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Scripting & Version Control</div>
+      <div class="skill-tags">
+        <span class="stag">Bash</span>
+        <span class="stag hi">Git</span>
+        <span class="stag">GitHub</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Concepts</div>
+      <div class="skill-tags">
+        <span class="stag hi">OOP</span>
+        <span class="stag">Data Structures</span>
+        <span class="stag">Networking</span>
+        <span class="stag">Cybersecurity</span>
+        <span class="stag">Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-tag">05 / Education</div>
+  <h2 class="sec-head">Academic <em>Background</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-yr">2023 – 2027</div>
+      <div class="edu-deg">B.E. Computer Science & Engineering</div>
+      <div class="edu-inst">Sri Sairam Engineering College, Chennai</div>
+      <div class="edu-score">CGPA: 8.32 / 10</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-yr">2023</div>
+      <div class="edu-deg">Higher Secondary Certificate (CBSE)</div>
+      <div class="edu-inst">Vels Vidyashram CBSE School</div>
+      <div class="edu-score">68.00%</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin:44px 0 20px;letter-spacing:-0.01em;">Certifications</h3>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🌐</div>
+      <div>
+        <div class="cert-name">Networking / Cybersecurity</div>
+        <div class="cert-org">Cisco NetAcad</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📡</div>
+      <div>
+        <div class="cert-name">IoT, Cloud Computing & Software Testing</div>
+        <div class="cert-org">NPTEL (IIT-backed)</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🍃</div>
+      <div>
+        <div class="cert-name">MongoDB Basics</div>
+        <div class="cert-org">MongoDB University</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">💼</div>
+      <div>
+        <div class="cert-name">Springboard Certificate</div>
+        <div class="cert-org">Infosys</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">Hackathon Winner</div>
+        <div class="cert-org">SRM Hackathon</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🥉</div>
+      <div>
+        <div class="cert-name">Agripulse — 3rd Place Winner</div>
+        <div class="cert-org">Agripulse Competition</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-tag">06 / Contact</div>
+  <h2 class="sec-head">Let's <em>Connect</em></h2>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-blurb">
+        I'm actively looking for internship opportunities and exciting projects to work on. Whether you have a role in mind or just want to talk tech — my inbox is always open.
+      </p>
+      <div class="contact-items">
+        <div class="c-item">
+          <div class="c-ico">✉️</div>
+          <div>
+            <div class="c-lbl">Email</div>
+            <div class="c-val">pbtharun2403@gmail.com</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">📞</div>
+          <div>
+            <div class="c-lbl">Phone</div>
+            <div class="c-val">+91 96000 48829</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-ico">📍</div>
+          <div>
+            <div class="c-lbl">Location</div>
+            <div class="c-val">Chennai, Tamil Nadu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;">Find me on</p>
+      <div class="social-grid">
+        <a href="https://github.com/pbtharun2403-creator" target="_blank" class="soc-btn">
+          <span class="soc-ico">🐙</span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/tharun-pb-ba399b28b" target="_blank" class="soc-btn">
+          <span class="soc-ico">💼</span> LinkedIn
+        </a>
+        <a href="mailto:pbtharun2403@gmail.com" class="soc-btn">
+          <span class="soc-ico">✉️</span> Email
+        </a>
+        <a href="#" class="soc-btn">
+          <span class="soc-ico">🌐</span> Portfolio
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed & built by <em>Tharun P B</em> · © 2025
+</footer>
+
+</body>
+</html>
